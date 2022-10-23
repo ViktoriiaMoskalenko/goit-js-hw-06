@@ -16,4 +16,4 @@ function onNameEl(obj) {
     );
   }
 }
-console.log(onNameEl(mainItem));
+onNameEl(mainItem);

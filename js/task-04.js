@@ -19,7 +19,7 @@ function onIncrementBtn() {
 }
 
 function onDecrementBtn() {
-  counterValue += 1;
+  counterValue -= 1;
   value.textContent = counterValue;
 
   console.log("decrement");
