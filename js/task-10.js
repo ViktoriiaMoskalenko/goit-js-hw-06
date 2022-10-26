@@ -3,39 +3,36 @@ function getRandomHexColor() {
 }
 
 const input = document.querySelector("#controls > input");
-const btnCreate = document.querySelector("[data-create]");
-const btnDestroy = document.querySelector("[data-destroy]");
+const createBtn = document.querySelector("[data-create]");
+const destroyDtn = document.querySelector("[data-destroy]");
 const box = document.querySelector("#boxes");
 
-btnCreate.addEventListener("click", onCreateElement);
-btnDestroy.addEventListener("click", onDestroyElement);
+createBtn.addEventListener("click", onCreateBoxes);
+destroyDtn.addEventListener("click", onDestroyBoxes);
 input.addEventListener("input", onNumberInput);
 
-let numberQuantity = 0;
+let inputValue = 0;
+let size = 30;
 
 function onNumberInput(event) {
-  numberQuantity = event.currentTarget.value;
+  inputValue = event.currentTarget.value;
 }
 
-function onCreateElement(event) {
-  event = numberQuantity;
+function onCreateBoxes(event) {
+  for (let i = 0; i < inputValue; i += 1) {
+    let createEl = document.createElement("div");
+    createEl.classList.add("js-box");
+    createEl.style.backgroundColor = getRandomHexColor();
+    size += 10;
+    createEl.style.width = size + "px";
+    createEl.style.height = size + "px";
 
-  for (let i = 0; i < event; i += 1) {
-    let total = 0;
-    if (!box.firstChild) {
-      total = 0;
-    } else {
-      total += i * 10;
-    }
-    const markup = document.createElement("div");
-
-    markup.style.backgroundColor = getRandomHexColor();
-
-    markup.style.width = `${30 + total}px`;
-    markup.style.height = `${30 + total}px`;
-    box.append(markup);
+    box.append(createEl);
   }
+  console.log(box.children);
 }
-function onDestroyElement() {
+
+function onDestroyBoxes() {
+  size = 30;
   box.querySelectorAll("div").forEach((element) => element.remove());
 }
